@@ -1,5 +1,4 @@
 # desc: Hypothetical syllogism or Transivity of implication
-# date: 2023-05-29
 
 from sympy import symbols
 
