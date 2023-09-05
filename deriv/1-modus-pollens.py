@@ -1,4 +1,4 @@
-# desc: Modus Tollens
+# desc: Modus Pollens
 
 from sympy import symbols
 

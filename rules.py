@@ -2,67 +2,95 @@ import sympy as sp
 from sympy import symbols
 from sympy.logic.boolalg import And, Implies, Not
 
+# Parsers
 
 def prepos(expr):
-    """ Prepositions of an implication """
+    """
+        Prepositions of an implication
+    """
 
     if not isinstance(expr, Implies):
         return [False, False]
 
     return expr.args
 
+# Rules
+
 def unconj(expr):
-    """ Conjunction Elimination """
+    """
+        Conjunction Elimination
+        Assume P and Q. Therefore P.
+    """
 
     if not isinstance(expr, And):
         return [False, False]
 
     return expr.args
 
-
 def dderiv(lhs, rhs):
-    """ Direct Derivation """
+    """
+        Direct Derivation
+        Assume P. Show Q. Therefore P implies Q.
+    """
 
-    if (lhs != rhs):
+    if lhs != rhs:
         return False
 
     return lhs
 
-def let_not(claim):
-    return ~claim
-
 def ideriv(lhs, rhs):
     """
-        Indirect Derivation (Contradiction)
-        Assuming LHS, we reached its negation, RHS. Therefore, RHS.
+        Indirect Derivation (Proof by contradiction)
+        Assume not P. Show P. Therefore P.
     """
 
-    if (lhs == rhs):
+    if lhs == rhs:
         return False
 
     return rhs
 
+def let_not(claim):
+    """
+        Assume the negation of a claim.
+    """
+
+    return ~claim
+
 def let_ante(cond):
+    """
+        Assume the antecedent of a conditional statement.
+    """
+
     return prepos(cond)[0]
 
 def show_cons(cond):
+    """
+        Claim the consequence of a conditional statement.
+    """
+
     return prepos(cond)[1]
 
 def cderiv(lhs, rhs):
     """
-        Conditional Derivation (Contradiction)
-        Assuming lhs, we reached rhs. Therefore lhs >> rhs.
+        Conditional Derivation
+        Assume LHS. Show RHS. Therefore LHS implies RHS.
     """
 
     return lhs >> rhs
 
 def dneg(expr):
-    """ Double negation """
+    """
+        Double negation
+        Assume P. Therefore not not P.
+    """
 
     return ~~expr
 
 def modp(ante, expr):
-    """ Modus Pollens """
+    """
+        Modus Pollens
+        Assume P. Assume P implies Q. Therefore Q.
+    """
 
     if prepos(expr)[0] == ante:
         return prepos(expr)[1]
@@ -70,8 +98,13 @@ def modp(ante, expr):
     if prepos(ante)[0] == expr:
         return prepos(ante)[1]
 
+    return False
+
 def modt(expr, cons):
-    """ Modus Tollens """
+    """
+        Modus Tollens
+        Assume P. Assume Q implies P.
+    """
 
     if prepos(expr)[1] == ~cons:
         return ~prepos(expr)[0]
@@ -79,16 +112,30 @@ def modt(expr, cons):
     if prepos(cons)[1] == ~expr:
         return ~prepos(cons)[0]
 
+    return False
+
 def rep(expr):
-    """ Identity """
+    """
+        Identity
+        Assume P. Therefore P.
+    """
 
     return expr
 
 def demorgan(expr):
+    """
+        De Morgan's Law
+    """
+
     if not isinstance(expr, Not):
         return False
 
     return (~ expr.args[0])^(~expr.args[1])
 
 def vacuous(premise, expr):
+    """
+        Vacuous implication
+        Assume P. Therefore not P implies Q.
+    """
+
     return ~premise >> expr

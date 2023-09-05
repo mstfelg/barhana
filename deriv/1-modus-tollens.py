@@ -1,4 +1,4 @@
-# desc: Modus Tollens example
+# desc: Modus Tollens
 
 from sympy import symbols
 

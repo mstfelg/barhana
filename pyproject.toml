@@ -1,6 +1,6 @@
 [project]
 name = "Barhana"
-version = "1.0"
+version = "0.1"
 description = "A logic derivation engine"
 readme = "README.md"
 requires-python = ">=3.7"
@@ -16,5 +16,4 @@ maintainers = [
 [project.urls]
 "Homepage" = "https://github.com/mstfelg/barhana"
 "Bug Reports" = "https://github.com/mstfelg/barhana/issues"
-"Funding" = "https://donate.pypi.org"
 "Source" = "https://github.com/mstfelg/barhana/"

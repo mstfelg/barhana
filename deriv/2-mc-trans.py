@@ -14,9 +14,9 @@ conc = p >> r
 
 from barhana.rules import cderiv, modp
 
-if1 = p
-st1 = modp(if1, pr[0])
-st2 = modp(st1, pr[1])
+if if1 := p:
+    st1 = modp(if1, pr[0])
+    st2 = modp(st1, pr[1])
 conc_pf = cderiv(p, st2)
 
 ## Proof1
