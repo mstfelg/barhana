@@ -16,16 +16,29 @@ def prepos(expr):
 
 # Rules
 
-def unconj(expr):
+def rep(expr):
     """
-        Conjunction Elimination
-        Assume P and Q. Therefore P.
+        Identity
+        Assume P. Therefore P.
     """
 
-    if not isinstance(expr, And):
-        return [False, False]
+    return expr
 
-    return expr.args
+def dneg(expr):
+    """
+        Double negation
+        Assume P. Therefore not not P.
+    """
+
+    return ~~expr
+
+# Claims and proofs
+def show_conc(claim):
+    """
+        Claims a conclusion
+    """
+
+    return claim
 
 def dderiv(lhs, rhs):
     """
@@ -37,6 +50,20 @@ def dderiv(lhs, rhs):
         return False
 
     return lhs
+
+def let_ante(cond):
+    """
+        Assume the antecedent of a conditional statement.
+    """
+
+    return prepos(cond)[0]
+
+def show_cons(cond):
+    """
+        Claim the consequence of a conditional statement.
+    """
+
+    return prepos(cond)[1]
 
 def ideriv(lhs, rhs):
     """
@@ -56,20 +83,6 @@ def let_not(claim):
 
     return ~claim
 
-def let_ante(cond):
-    """
-        Assume the antecedent of a conditional statement.
-    """
-
-    return prepos(cond)[0]
-
-def show_cons(cond):
-    """
-        Claim the consequence of a conditional statement.
-    """
-
-    return prepos(cond)[1]
-
 def cderiv(lhs, rhs):
     """
         Conditional Derivation
@@ -78,13 +91,16 @@ def cderiv(lhs, rhs):
 
     return lhs >> rhs
 
-def dneg(expr):
+def unconj(expr):
     """
-        Double negation
-        Assume P. Therefore not not P.
+        Conjunction Elimination
+        Assume P and Q. Therefore P.
     """
 
-    return ~~expr
+    if not isinstance(expr, And):
+        return [False, False]
+
+    return expr.args
 
 def modp(ante, expr):
     """
@@ -114,15 +130,7 @@ def modt(expr, cons):
 
     return False
 
-def rep(expr):
-    """
-        Identity
-        Assume P. Therefore P.
-    """
-
-    return expr
-
-def demorgan(expr):
+def de_morgan(expr):
     """
         De Morgan's Law
     """
