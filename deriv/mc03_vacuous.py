@@ -2,7 +2,7 @@
 
 from sympy import symbols
 
-from barhana.rules import demorgan, ideriv, let_ante
+from barhana.rules import ideriv, let_ante
 
 p,q = symbols('p q')
 pr = [
