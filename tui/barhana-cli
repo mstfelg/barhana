@@ -1,0 +1,57 @@
+#!/usr/bin/env python
+
+from enum import Enum
+
+from prompt_toolkit import PromptSession
+from prompt_toolkit.completion import WordCompleter
+from prompt_toolkit.lexers import PygmentsLexer
+from pygments.lexers.python import PythonLexer
+
+from barhana.rules import *
+
+barhana_completer = WordCompleter([
+    'show',
+    'show_not',
+    'show_cons',
+    'let_not',
+    'let_ante',
+    'modp',
+    'modt',
+    'de_morgans',
+    'premises',
+    ], ignore_case=True)
+
+indent_level = 0
+deriv_mode = {
+    'PREMISE': [],
+    'CLAIM': [],
+    'ASSUME': [],
+    'STATE': [],
+}
+cur_mode = 'CLAIM'
+
+BUILT_INS = {
+    'display': lambda x: print(deriv_mode[x | 'PREMISE'])    
+}
+
+def main():
+    session = PromptSession(lexer=PygmentsLexer(PythonLexer),
+                            completer=barhana_completer)
+
+    while True:
+        try:
+            inp_count = str(len(deriv_mode[cur_mode]))
+            inp = session.prompt(f'[ {cur_mode}{inp_count} ]: ')
+        except KeyboardInterrupt:
+            continue
+        except EOFError:
+            break
+        try:
+            exec(inp, globals(), locals())
+        except Exception as e:
+            print(repr(e))
+
+
+
+if __name__ == '__main__':
+    main()
