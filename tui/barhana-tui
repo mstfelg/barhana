@@ -1,0 +1,122 @@
+#!/usr/bin/env python
+
+from prompt_toolkit.application import Application
+from prompt_toolkit.buffer import Buffer
+from prompt_toolkit.filters import Condition
+from prompt_toolkit.formatted_text import (HTML, AnyFormattedText,
+                                           StyleAndTextTuples,
+                                           to_formatted_text)
+from prompt_toolkit.formatted_text.utils import (fragment_list_len,
+                                                 fragment_list_to_text)
+from prompt_toolkit.key_binding import KeyBindings
+from prompt_toolkit.layout.containers import (Float, FloatContainer, HSplit,
+                                              Window)
+from prompt_toolkit.layout.controls import BufferControl, FormattedTextControl
+from prompt_toolkit.layout.layout import Layout
+from prompt_toolkit.layout.menus import CompletionsMenu
+from prompt_toolkit.layout.processors import (Processor, Transformation,
+                                              TransformationInput)
+
+# Global wrap lines flag.
+wrap_lines = True
+
+class StatementNum(Processor):
+    """
+    Insert text after the input.
+
+    :param text: This can be either plain text or formatted text
+        (or a callable that returns any of those).
+    :param style: style to be applied to this prompt/prefix.
+    """
+
+    def __init__(self, text, style: str = "") -> None:
+        self.text = text
+        self.style = style
+
+    def apply_transformation(self, ti: TransformationInput) -> Transformation:
+        source_to_display: SourceToDisplay | None
+        display_to_source: DisplayToSource | None
+
+        # Get fragments.
+        fragments_before = to_formatted_text(f"[St {str(ti.lineno)}] " + self.style)
+        fragments = fragments_before + ti.fragments
+
+        shift_position = fragment_list_len(fragments_before)
+        source_to_display = lambda i: i + shift_position
+        display_to_source = lambda i: i - shift_position
+
+        return Transformation(
+            fragments,
+            source_to_display=source_to_display,
+            display_to_source=display_to_source,
+        )
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({self.text!r}, style={self.style!r})"
+
+
+
+def get_line_prefix(lineno, wrap_count):
+    if wrap_count == 0:
+        return HTML('[%s] <style bg="orange" fg="black">--&gt;</style> ') % lineno
+
+    text = str(lineno) + "-" + "*" * (lineno // 2) + ": "
+
+    return HTML('[%s.%s] <style bg="ansigreen" fg="ansiblack">%s</style>') % (
+        lineno,
+        wrap_count,
+        text,
+    )
+
+# The layout
+buff = Buffer(complete_while_typing=True)
+
+body = FloatContainer(
+    content=HSplit(
+        [
+            Window(
+                FormattedTextControl(
+                    "Barhana: logical derivation engine."
+                ),
+                height=1,
+                style="reverse",
+            ),
+            Window(
+                BufferControl(
+                    buffer=buff,
+                    input_processors=[StatementNum("")],
+                ),
+                wrap_lines=Condition(lambda: wrap_lines),
+            ),
+        ]
+    ),
+    floats=[
+        Float(
+            xcursor=True,
+            ycursor=True,
+            content=CompletionsMenu(max_height=16, scroll_offset=1),
+        )
+    ],
+)
+
+
+# Key bindings
+kb = KeyBindings()
+
+@kb.add("c-c")
+def _(event):
+    "Quit application."
+    event.app.exit()
+
+# The `Application`
+application = Application(
+    layout=Layout(body), key_bindings=kb, full_screen=True, mouse_support=True
+)
+
+
+def run():
+    application.run()
+
+
+if __name__ == "__main__":
+    run()
