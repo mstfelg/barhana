@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 
+import re
 from enum import Enum
 
 from prompt_toolkit import PromptSession
 from prompt_toolkit.completion import WordCompleter
 from prompt_toolkit.lexers import PygmentsLexer
 from pygments.lexers.python import PythonLexer
+from sympy.logic import boolalg
 
 from barhana.rules import *
 
@@ -28,13 +30,30 @@ deriv_mode = {
     'ASSUME': [],
     'STATE': [],
 }
-cur_mode = 'CLAIM'
+cur_mode = 'PREMISE'
+
+def usage():
+    """ Print help message """
+    print("""
+            Barhana: logical derivation engine.
+            ---
+            display: display a list of provided premises, claims, assumptions
+                     or statements.
+
+            help:    Show this message.
+          """)
 
 BUILT_INS = {
-    'display': lambda x: print(deriv_mode[x | 'PREMISE'])    
+    'help': usage,
+    'display': lambda x: print(deriv_mode.get(x.upper()))
+}
+
+namespace = {
+    '__': None
 }
 
 def main():
+    """ Main routine """
     session = PromptSession(lexer=PygmentsLexer(PythonLexer),
                             completer=barhana_completer)
 
@@ -46,12 +65,24 @@ def main():
             continue
         except EOFError:
             break
+
+        arg_list = re.split(r'\s+', inp)
+        arg_list = [arg for arg in arg_list if arg]
+
+        if func := BUILT_INS.get(arg_list[0]):
+            try:
+                func(*arg_list[1:])
+            except TypeError as err:
+                print("Invalid command")
+                print(repr(err))
+
+            continue
+
         try:
-            exec(inp, globals(), locals())
-        except Exception as e:
-            print(repr(e))
+            exec(inp, globals(), namespace)
 
-
+        except Exception as err:
+            print(repr(err))
 
 if __name__ == '__main__':
     main()
