@@ -33,12 +33,12 @@ def dneg(expr):
     return ~~expr
 
 # Claims and proofs
-def show_conc(claim):
+def claim(statement):
     """
         Claims a conclusion
     """
 
-    return claim
+    return statement
 
 def dderiv(lhs, rhs):
     """
@@ -58,12 +58,19 @@ def let_ante(cond):
 
     return prepos(cond)[0]
 
-def show_cons(cond):
+def claim_cons(cond):
     """
         Claim the consequence of a conditional statement.
     """
 
     return prepos(cond)[1]
+
+def claim_not(statement):
+    """
+        Claims the negation of a statement
+    """
+
+    return ~statement
 
 def ideriv(lhs, rhs):
     """
@@ -76,12 +83,12 @@ def ideriv(lhs, rhs):
 
     return rhs
 
-def let_not(claim):
+def let_not(statement):
     """
         Assume the negation of a claim.
     """
 
-    return ~claim
+    return ~statement
 
 def cderiv(lhs, rhs):
     """
