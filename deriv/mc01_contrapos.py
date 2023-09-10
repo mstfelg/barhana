@@ -3,7 +3,7 @@
 from sympy import symbols
 
 from barhana.rules import (cderiv, dneg, ideriv, let_ante, let_not, modp,
-                           show_cons)
+                           claim_cons)
 
 p,q = symbols('p q')
 pr = [
@@ -12,7 +12,7 @@ pr = [
 conc = ~q >> ~p
 
 if if1 := let_ante(conc):
-    cl1 = show_cons(conc)
+    cl1 = claim_cons(conc)
 
     if if2 := let_not(cl1):
         st1 = dneg(if2)

@@ -15,9 +15,9 @@ DERIV_CHMODE = {
     'PREMISE': [
     ],
     'CLAIM': [
-        'show',
-        'show_not',
-        'show_cons',
+        'claim',
+        'claim_not',
+        'claim_cons',
     ],
     'ASSUME': [
         'let_not',
