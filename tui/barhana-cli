@@ -45,6 +45,7 @@ deriv_mode = {
 }
 
 cur_mode = 'PREMISE'
+cur_scope = 'Set premises'
 namespace = { }
 
 def usage():
@@ -81,6 +82,16 @@ barhana_completer = WordCompleter([
         item for sublist in DERIV_CHMODE.values() for item in sublist
     ] + list(BUILT_INS.keys()), ignore_case=True)
 
+def update_mode(arg):
+    """ Parses argument for a keyword to change mode """
+
+    for mode in DERIV_CHMODE:
+        if arg in DERIV_CHMODE[mode]:
+            global cur_mode, cur_scope
+            cur_mode = cur_scope = mode
+
+            return
+
 def main():
     """ Main routine """
     session = PromptSession(lexer=PygmentsLexer(PythonLexer),
@@ -89,7 +100,7 @@ def main():
     while True:
         try:
             inp_count = str(len(deriv_mode[cur_mode]))
-            inp = session.prompt(f'[ {cur_mode}{inp_count} ]: ')
+            inp = session.prompt(f'[ {cur_mode}{inp_count} ]: ', rprompt=cur_scope)
         except KeyboardInterrupt:
             continue
         except EOFError:
@@ -97,8 +108,14 @@ def main():
 
         arg_list = re.split(r'\s+', inp)
         arg_list = [arg for arg in arg_list if arg]
+        cmd = re.match(r'(\w+)\((.*)\)', inp)
 
-        if func := BUILT_INS.get(arg_list[0]):
+        if cmd:
+            cmd = cmd.group(1)
+        else:
+            cmd = arg_list[0]
+
+        if func := BUILT_INS.get(cmd):
             try:
                 func(*arg_list[1:])
             except Exception as err:
@@ -107,9 +124,11 @@ def main():
 
             continue
 
+        update_mode(cmd)
+        dvar = DERIV_PREFIX[cur_mode]
+        dcount = len(deriv_mode[cur_mode])
+
         try:
-            dvar = DERIV_PREFIX[cur_mode]
-            dcount = len(deriv_mode[cur_mode])
             exec(f"{dvar}{dcount:02d} = " + inp, globals(), namespace)
             deriv_mode[cur_mode].append(inp)
 
