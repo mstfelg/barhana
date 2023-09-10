@@ -11,26 +11,41 @@ from sympy.logic import boolalg
 
 from barhana.rules import *
 
-barhana_completer = WordCompleter([
-    'show',
-    'show_not',
-    'show_cons',
-    'let_not',
-    'let_ante',
-    'modp',
-    'modt',
-    'de_morgans',
-    'premises',
-    ], ignore_case=True)
+DERIV_CHMODE = {
+    'PREMISE': [
+    ],
+    'CLAIM': [
+        'show',
+        'show_not',
+        'show_cons',
+    ],
+    'ASSUME': [
+        'let_not',
+        'let_ante',
+    ],
+    'STATE': [
+        'modp',
+        'modt',
+        'de_morgans',
+    ],
+}
 
-indent_level = 0
+DERIV_PREFIX = {
+    'PREMISE': 'pr',
+    'CLAIM': 'cl',
+    'ASSUME': 'if',
+    'STATE': 'st',
+}
+
 deriv_mode = {
     'PREMISE': [],
     'CLAIM': [],
     'ASSUME': [],
     'STATE': [],
 }
+
 cur_mode = 'PREMISE'
+namespace = { }
 
 def usage():
     """ Print help message """
@@ -43,14 +58,28 @@ def usage():
             help:    Show this message.
           """)
 
+def show_deriv(query=None):
+    if query:
+        ans = deriv_mode.get(query.upper())
+        if not ans:
+            ans = "Invalid mode"
+        print(ans)
+        return
+    for mode, stat in deriv_mode.items():
+        print(mode)
+        print(stat)
+    print('VARIABLES')
+    print(namespace)
+
 BUILT_INS = {
     'help': usage,
-    'display': lambda x: print(deriv_mode.get(x.upper()))
+    'def': lambda x: exec(f"{x} = symbols('{x}')", globals(), namespace),
+    'ls': show_deriv,
 }
 
-namespace = {
-    '__': None
-}
+barhana_completer = WordCompleter([
+        item for sublist in DERIV_CHMODE.values() for item in sublist
+    ] + list(BUILT_INS.keys()), ignore_case=True)
 
 def main():
     """ Main routine """
@@ -72,14 +101,17 @@ def main():
         if func := BUILT_INS.get(arg_list[0]):
             try:
                 func(*arg_list[1:])
-            except TypeError as err:
+            except Exception as err:
                 print("Invalid command")
                 print(repr(err))
 
             continue
 
         try:
-            exec(inp, globals(), namespace)
+            dvar = DERIV_PREFIX[cur_mode]
+            dcount = len(deriv_mode[cur_mode])
+            exec(f"{dvar}{dcount:02d} = " + inp, globals(), namespace)
+            deriv_mode[cur_mode].append(inp)
 
         except Exception as err:
             print(repr(err))
