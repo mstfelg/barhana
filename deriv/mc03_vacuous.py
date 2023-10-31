@@ -8,7 +8,7 @@ p,q = symbols('p q')
 pr = [
     ~p
 ]
-conc = p >> q
+cl0 = p >> q
 
-if1 = let_ante(conc)
-conc_pf = ideriv(if1, pr[0])
+if1 = let_ante(cl0)
+pf0 = ideriv(if1, pr[0])

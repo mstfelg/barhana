@@ -2,14 +2,14 @@
 
 from sympy import symbols
 
-from barhana.rules import dderiv, let_ante, claim_cons
+from barhana.rules import claim_cons, dderiv, let_ante
 
 p,q = symbols('p q')
 pr = [
     q
 ]
-conc = p >> q
+cl0 = p >> q
 
-if if1 := let_ante(conc):
-    cl1 = claim_cons(conc)
+if if1 := let_ante(cl0):
+    cl1 = claim_cons(cl0)
 pf1 = dderiv(cl1, pr[0])

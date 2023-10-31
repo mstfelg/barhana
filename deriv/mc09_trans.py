@@ -7,7 +7,7 @@ pr = [
     p >> q,
     q >> r
 ]
-conc = p >> r
+cl0 = p >> r
 
 ## Proof2
 
@@ -16,7 +16,7 @@ from barhana.rules import cderiv, modp
 if if1 := p:
     st1 = modp(if1, pr[0])
     st2 = modp(st1, pr[1])
-conc_pf = cderiv(p, st2)
+pf0 = cderiv(p, st2)
 
 ## Proof1
 # from barhana.rules import ideriv, modt

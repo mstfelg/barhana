@@ -9,7 +9,7 @@ p = symbols('p')
 pr = [
     p
 ]
-conc = p
+cl0 = p
 
-if1 = let_not(conc)
+if1 = let_not(cl0)
 pf1 = ideriv(if1, pr[0])

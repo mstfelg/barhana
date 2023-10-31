@@ -5,4 +5,4 @@ from sympy import symbols
 p,q,r = symbols('p q r')
 pr = [
 ]
-conc = (p >> q) ^ (q >> p)
+cl0 = (p >> q) ^ (q >> p)
