@@ -8,4 +8,4 @@ p,q,r = symbols('p q r')
 pr = [
     p >> (q >> r)
 ]
-conc = q >> (p >> r)
+cl0 = q >> (p >> r)

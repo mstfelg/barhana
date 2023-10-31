@@ -6,4 +6,4 @@ p,q,r = symbols('p q r')
 pr = [
         (p ^ q) >> q
 ]
-conc = (p >> r) ^ (q >> r)
+cl0 = (p >> r) ^ (q >> r)

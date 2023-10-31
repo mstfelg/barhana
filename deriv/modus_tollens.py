@@ -9,7 +9,7 @@ pr = [
     ~q,
     p >> q,
 ]
-conc = ~p
+cl0 = ~p
 
 st1 = modt(pr[0], pr[1])
-conc_pf = dderiv(st1, conc)
+pf0 = dderiv(st1, cl0)

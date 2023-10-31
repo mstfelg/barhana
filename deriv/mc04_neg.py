@@ -8,13 +8,13 @@ p,q = symbols('p q')
 pr = [
     ~(p >> q)
 ]
-conc = p & ~q
+cl0 = p & ~q
 
-cl1 = unconj(conc)[0]
+cl1 = unconj(cl0)[0]
 
 if if1 := let_not(cl1):
     st1 = vacuous(if1, q)
     pf1 = ideriv(st1, pr[0])
 
-cl2 = unconj(conc)[1]
+cl2 = unconj(cl0)[1]
 if2 = let_not(cl2)
