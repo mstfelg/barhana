@@ -1,6 +1,24 @@
 import sympy as sp
-from sympy import symbols
+from sympy import Dummy, symbols
 from sympy.logic.boolalg import And, Implies, Not
+
+
+def thm_conc(prs, conc, *values):
+    """
+        Wraps prepositions and conclusion in a theorem.
+    """
+    thm_vars = conc.free_symbols
+    thm_subs = {var: Dummy() for var in thm_vars}
+    submap = dict(zip(thm_subs.keys(), values))
+
+    for pr,val in zip(prs, values):
+        if pr.subs(submap) != val:
+            return False
+
+    return conc.subs(submap)
+
+def theorem(pr, conc):
+    return lambda *values: thm_conc(pr, conc, *values)
 
 # Parsers
 
