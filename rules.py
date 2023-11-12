@@ -1,6 +1,6 @@
 import sympy as sp
-from sympy import Dummy, symbols
-from sympy.logic.boolalg import And, Implies, Not
+from sympy import Dummy, false, symbols, true
+from sympy.logic.boolalg import And, Equivalent, Implies, Not
 
 
 def thm_conc(prs, conc, *values):
@@ -13,11 +13,15 @@ def thm_conc(prs, conc, *values):
 
     for pr,val in zip(prs, values):
         if pr.subs(submap) != val:
-            return False
+            return false
 
     return conc.subs(submap)
 
 def theorem(pr, conc):
+    """
+        Returns a function that can be used as a theorem.
+    """
+
     return lambda *values: thm_conc(pr, conc, *values)
 
 # Parsers
@@ -27,8 +31,8 @@ def prepos(expr):
         Prepositions of an implication
     """
 
-    if not isinstance(expr, Implies):
-        return [False, False]
+    if not isinstance(expr, Implies) or not isinstance(expr, Equivalent):
+        return [false, false]
 
     return expr.args
 
@@ -41,6 +45,14 @@ def rep(expr):
     """
 
     return expr
+
+def iff(lhs, rhs):
+    """
+        Biconditional
+        lhs <=> rhs
+    """
+
+    return Equivalent(lhs,rhs)
 
 def dneg(expr):
     """
@@ -64,10 +76,7 @@ def dderiv(lhs, rhs):
         Assume P. Show Q. Therefore P implies Q.
     """
 
-    if lhs != rhs:
-        return False
-
-    return lhs
+    return lhs >> rhs
 
 def let_ante(cond):
     """
@@ -75,6 +84,16 @@ def let_ante(cond):
     """
 
     return prepos(cond)[0]
+
+def let_cons(expr):
+    """
+        Assumes the consequent of a biconditional statement.
+    """
+
+    if not isinstance(expr, Equivalent):
+        return false
+
+    return prepos(expr)[1]
 
 def claim_cons(cond):
     """
@@ -96,8 +115,8 @@ def ideriv(lhs, rhs):
         Assume not P. Show P. Therefore P.
     """
 
-    if lhs == rhs:
-        return False
+    if lhs and rhs:
+        return false
 
     return rhs
 
@@ -123,7 +142,7 @@ def unconj(expr):
     """
 
     if not isinstance(expr, And):
-        return [False, False]
+        return [false, false]
 
     return expr.args
 
@@ -139,7 +158,7 @@ def modp(ante, expr):
     if prepos(ante)[0] == expr:
         return prepos(ante)[1]
 
-    return False
+    return false
 
 def modt(expr, cons):
     """
@@ -153,7 +172,7 @@ def modt(expr, cons):
     if prepos(cons)[1] == ~expr:
         return ~prepos(cons)[0]
 
-    return False
+    return false
 
 def de_morgan(expr):
     """
@@ -161,7 +180,7 @@ def de_morgan(expr):
     """
 
     if not isinstance(expr, Not):
-        return False
+        return false
 
     return (~ expr.args[0])^(~expr.args[1])
 
