@@ -1,4 +1,7 @@
-# desc: Modus Tollens
+'''
+desc: Modus Tollens
+Indirect reasoning
+'''
 
 from sympy import symbols
 

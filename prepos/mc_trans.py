@@ -1,4 +1,7 @@
-# desc: Hypothetical syllogism or Transivity of implication
+'''
+desc: Transivity of implication
+other_names: Hypothetical syllogism, Chain Rule
+'''
 
 from sympy import symbols
 

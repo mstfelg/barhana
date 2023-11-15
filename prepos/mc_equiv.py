@@ -1,4 +1,7 @@
-# desc: Or-and-if material condition
+'''
+desc: Or-and-if material condition
+other_names: Conditional Equivalence
+'''
 
 from sympy import symbols
 
