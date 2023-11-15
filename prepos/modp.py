@@ -1,4 +1,7 @@
-# desc: Modus Pollens
+'''
+desc: Modus Pollens
+Law of detachment
+'''
 
 from sympy import symbols
 
