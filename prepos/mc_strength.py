@@ -1,4 +1,7 @@
-# desc: Distributitivity
+'''
+title: Strengthening of antecedent
+other_names: Distributitivity
+'''
 
 from sympy import symbols
 

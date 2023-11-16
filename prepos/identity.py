@@ -1,4 +1,4 @@
-# desc: Law of identity
+# title: Law of identity
 
 from sympy import symbols
 

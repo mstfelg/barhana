@@ -1,6 +1,6 @@
 '''
-desc: Transposition
-Assume P implies Q. Therefore ~Q implies ~P. And vice verse.
+title: Transposition
+desc: Assume P implies Q. Therefore ~Q implies ~P. And vice verse.
 '''
 
 from sympy import symbols

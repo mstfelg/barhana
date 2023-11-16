@@ -1,5 +1,5 @@
 '''
-desc: Peirce's law
+title: Peirce's law
 '''
 
 from sympy import symbols

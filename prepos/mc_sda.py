@@ -1,4 +1,6 @@
-# desc: Simplification of disjunctive antecedents
+'''
+title: Simplification of disjunctive antecedents
+'''
 
 from sympy import symbols
 
