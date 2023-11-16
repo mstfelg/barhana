@@ -1,6 +1,6 @@
 '''
-desc: Vacuous implication
-Assume P. Therefore, ~P implies anything.
+title: Vacuous implication
+desc: Assume P. Therefore, ~P implies anything.
 '''
 
 from sympy import symbols

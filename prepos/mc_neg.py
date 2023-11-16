@@ -1,4 +1,6 @@
-# desc: Material Condition Negation
+'''
+title: Material Condition Negation
+'''
 
 from sympy import symbols
 

@@ -1,3 +1,7 @@
+'''
+title: Reduction of antecedents
+'''
+
 from sympy import symbols
 
 from barhana.rules import (cderiv, claim_cons, dderiv, ideriv, let_ante,

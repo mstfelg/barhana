@@ -1,6 +1,6 @@
 '''
-desc: Double negation
-Assume P iff ~~P.
+title: Double negation
+desc: Assume P iff ~~P.
 '''
 
 from sympy import symbols

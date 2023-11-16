@@ -1,6 +1,6 @@
 '''
-desc: Modus Tollens
-Indirect reasoning
+title: Modus Tollens
+other_names: Indirect reasoning
 '''
 
 from sympy import symbols

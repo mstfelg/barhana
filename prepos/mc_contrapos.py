@@ -1,4 +1,6 @@
-# desc: Material Condition Contraposition
+'''
+title: Material Condition Contraposition
+'''
 
 from sympy import symbols
 

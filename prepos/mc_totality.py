@@ -1,4 +1,6 @@
-# desc: Totality
+'''
+title: Law of totality
+'''
 
 from sympy import symbols
 

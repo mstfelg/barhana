@@ -1,4 +1,6 @@
-# desc: Law of excluded middle
+'''
+title: Law of excluded middle
+'''
 
 from sympy import symbols
 

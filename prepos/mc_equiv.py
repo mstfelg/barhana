@@ -1,5 +1,5 @@
 '''
-desc: Or-and-if material condition
+title: Or-and-if material condition
 other_names: Conditional Equivalence
 '''
 

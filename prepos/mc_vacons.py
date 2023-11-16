@@ -1,6 +1,6 @@
 '''
-desc: Vacuous consequent implication
-Assume P. Therefore Q implies P.
+title: Vacuous consequent implication
+desc: P. Therefore Q implies P.
 '''
 
 from sympy import symbols

@@ -1,10 +1,10 @@
 '''
-desc: Reductio ad absurdum
+title: Reductio ad absurdum
 '''
 
 from sympy import symbols
 
-from barhana.rules import claim_cons, ideriv, let_ante, theorem
+from barhana.rules import claim_cons, ideriv, let_not, modp, theorem
 
 p = symbols('p')
 pr = [
@@ -12,3 +12,7 @@ pr = [
 ]
 cl0 = p
 thm = theorem(pr, cl0)
+
+if if1 := let_not(cl0):
+    st1 = modp(if1, pr[0])
+    pf0 = ideriv(st1, if1)

@@ -1,4 +1,6 @@
-# desc: Commutativity of antecedents
+'''
+title: Commutativity of antecedents
+'''
 
 from sympy import symbols
 

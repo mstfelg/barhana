@@ -1,4 +1,6 @@
-# desc: Reflexivity
+'''
+title: Reflexivity
+'''
 
 from sympy import symbols
 

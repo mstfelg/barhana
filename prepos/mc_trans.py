@@ -1,5 +1,5 @@
 '''
-desc: Transivity of implication
+title: Transivity of implication
 other_names: Hypothetical syllogism, Chain Rule
 '''
 
