@@ -1,4 +1,7 @@
-# title: Law of identity
+'''
+title: Law of identity
+desc: P. Therefore P.
+'''
 
 from sympy import symbols
 
@@ -8,14 +11,16 @@ p = symbols('p')
 pr = [
     p
 ]
-cl0 = p
-thm = theorem(pr, cl0)
+conc = p
+thm = theorem(pr, conc)
 
 # Direct proof
-cl1 = claim(cl0)
-st1 = pr[0]
-pf1 = dderiv(cl1, st1)
 
-# Indirect proof: proof by contradiction
-if1 = let_not(cl0)
-pf1 = ideriv(if1, pr[0])
+if cl0 := conc:
+    pf1 = dderiv(cl0, pr[0])
+
+# Indirect proof
+
+if cl0 := conc:
+    if1 = let_not(cl0)
+    pf1 = ideriv(if1, pr[0])

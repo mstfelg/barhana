@@ -12,18 +12,17 @@ pr = [
     p >> q,
     q >> r
 ]
-cl0 = p >> r
+conc = p >> r
 
-def main(*args):
-    if args[0] == 'pf1':
-        if if1 := let_ante(cl0): # p
-            st1 = modp(if1, pr[0])
-            st2 = modp(st1, pr[1])
-        pf0 = cderiv(p, st2)
+if cl0 := conc:
+    if1 = let_ante(cl0) # p
+    st1 = modp(if1, pr[0]) # q
+    st2 = modp(st1, pr[1]) # r
+    pf0 = cderiv(p, st2) # p >> r
 
-    if args[0] == 'pf2':
-        cl1 = r
-        if1 = ~r
-        st2 = modt(if1, pr[0])
-        st3 = modt(st2, pr[1])
-        pf1 = ideriv(if1, st3)
+if cl0 := conc:
+    cl1 = r
+    if1 = ~r
+    st2 = modt(if1, pr[0])
+    st3 = modt(st2, pr[1])
+    pf1 = ideriv(if1, st3)

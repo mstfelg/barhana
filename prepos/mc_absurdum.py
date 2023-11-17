@@ -10,9 +10,10 @@ p = symbols('p')
 pr = [
     ~p >> p
 ]
-cl0 = p
-thm = theorem(pr, cl0)
+conc = p
+thm = theorem(pr, conc)
 
-if if1 := let_not(cl0):
+if cl0 := conc:
+    if1 = let_not(cl0)
     st1 = modp(if1, pr[0])
     pf0 = ideriv(st1, if1)

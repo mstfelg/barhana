@@ -9,5 +9,5 @@ from barhana.rules import theorem
 p,q = symbols('p q')
 pr = [
 ]
-cl0 = (p >> q) ^ (p >> ~q)
-theorem = theorem(pr, cl0)
+conc = (p >> q) ^ (p >> ~q)
+theorem = theorem(pr, conc)

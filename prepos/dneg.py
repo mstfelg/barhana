@@ -7,9 +7,12 @@ from sympy import symbols
 
 from barhana.rules import claim_cons, ideriv, iff, let_ante, theorem
 
-p,q = symbols('p')
+p = symbols('p')
 pr = [
     p
 ]
-cl0 = iff(p, ~~p)
+
+if cl0 := iff(p, ~~p):
+    True
+
 thm = theorem(pr, cl0)

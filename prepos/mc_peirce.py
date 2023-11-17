@@ -10,5 +10,5 @@ p,q = symbols('p q')
 pr = [
     (p >> q) >> p
 ]
-cl0 = p
-thm = theorem(pr, cl0)
+conc = p
+thm = theorem(pr, conc)

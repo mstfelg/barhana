@@ -11,9 +11,11 @@ p,q = symbols('p q')
 pr = [
     p
 ]
-cl0 = q >> p
-thm = theorem(pr, cl0)
+conc = q >> p
+thm = theorem(pr, conc)
 
-if if1 := let_ante(cl0): # q
-    cl1 = claim_cons(cl0) # p
-pf1 = dderiv(cl1, pr[0])
+if cl0 := conc:
+    if1 = let_ante(cl0) # q
+
+    if cl1 := claim_cons(cl0): # p
+        pf1 = dderiv(cl1, pr[0])

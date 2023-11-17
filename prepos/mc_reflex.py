@@ -7,4 +7,4 @@ from sympy import symbols
 p = symbols('p')
 pr = [
 ]
-cl0 = p >> p
+conc = p >> p
