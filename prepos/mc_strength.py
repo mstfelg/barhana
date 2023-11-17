@@ -11,4 +11,4 @@ p,q,r = symbols('p q r')
 pr = [
         p >> q
 ]
-cl0 = (p & r) >> q
+conc = (p & r) >> q

@@ -1,25 +1,26 @@
-'''
-title: Commutativity of antecedents
-'''
-
 from sympy import symbols
 
-from barhana.rules import *
+from barhana.rules import (cderiv, claim_cons, dderiv, ideriv, let_ante,
+                           let_not, modp, modt, theorem)
 
 p,q,r = symbols('p q r')
 pr = [
     p >> (q >> r)
 ]
-cl0 = q >> (p >> r)
-thm = theorem(pr, cl0)
+conc = q >> (p >> r)
+thm = theorem(pr, conc)
 
-if if1 := let_ante(cl0): # q
-    cl1 = claim_cons(cl0) # p >> r
+if cl0 := conc:
+    if1 = let_ante(cl0) # q
 
-    if if2 := let_ante(cl1): # p
-        cl2 = claim_cons(r) # r
-        st1 = modp(pr[0], p) # q >> r
-        st2 = modp(if1, st1) # r
-    pf2 = dderiv(cl2, st2) # p >> r
-pf1 = dderiv(cl1, pf2) # q >> (p >> r)
-pf0 = dderiv(cl0, pf1)
+    if cl1 := claim_cons(cl0): # p >> r
+        if2 = let_ante(cl1) # p
+
+        if cl2 := claim_cons(cl1): # r
+            st1 = modp(pr[0], if2) # q >> r
+            if3 = let_not(cl2) # ~r
+            st2 = modt(st1, if3) # ~q
+            pf2 = ideriv(st2, if1) # r
+
+        pf1 = cderiv(if2, cl2) # p >> r
+    pf0 = dderiv(if1, cl1) # q >> (p >> r)

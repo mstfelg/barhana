@@ -70,13 +70,16 @@ def claim(statement):
 
     return statement
 
-def dderiv(lhs, rhs):
+def dderiv(claim_st, stat):
     """
         Direct Derivation
-        Assume P. Show Q. Therefore P implies Q.
+        Given a claim, statement is reached. Proof is concluded.
     """
 
-    return lhs >> rhs
+    if claim_st != stat:
+        return false
+
+    return stat
 
 def let_ante(cond):
     """

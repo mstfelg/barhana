@@ -12,7 +12,8 @@ pr = [
     p,
     p >> q,
 ]
-cl0 = q
+conc = q
 
-st1 = modp(pr[0], pr[1])
-pf0 = dderiv(st1, cl0)
+if cl0 := conc:
+    st1 = modp(pr[0], pr[1])
+    pf0 = dderiv(st1, cl0)
