@@ -1,14 +1,18 @@
+'''
+title: Syllogism AAA-1
+other_names: Syllogism Barbara
+'''
 from sympy import symbols
 
-from barhana.rules import (dderiv, claim_cons, dderiv, ideriv, let_ante,
-                           let_not, modp, modt, theorem)
+from barhana.rules import (claim_cons, dderiv, ideriv, let_ante, let_not, modp,
+                           modt, theorem)
 
 p,q,r = symbols('p q r')
 pr = [
     p >> q
 ]
 conc = (q >> r) >> (p >> r)
-thm = theorem(pr, conc)
+barbara = theorem(pr, conc)
 
 if cl0 := conc:
     if1 = let_ante(cl0) # q >> r
@@ -20,5 +24,5 @@ if cl0 := conc:
             if3 = let_not(r)
             st1 = modt(cl1, if3) # ~p
             pf2 = ideriv(if2, st1) # r
-        pf1 = dderiv(if2, pf2) # p >> r
-    pf0 = dderiv(cl1, pf1) # (q >> r) >> (p >> r)
+        pf1 = dderiv(if2, cl2) # p >> r
+    pf0 = dderiv(if1, cl1) # (q >> r) >> (p >> r)

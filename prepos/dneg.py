@@ -12,4 +12,4 @@ pr = [
     p
 ]
 conc = iff(p, ~~p)
-thm = theorem(pr, conc)
+dneg = theorem(pr, conc)

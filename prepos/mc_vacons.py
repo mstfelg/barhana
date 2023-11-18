@@ -12,10 +12,11 @@ pr = [
     p
 ]
 conc = q >> p
-thm = theorem(pr, conc)
+vacons = theorem(pr, conc)
 
-if cl0 := conc:
-    if1 = let_ante(cl0) # q
+if __name__ == '__main__':
+    if cl0 := conc:
+        if1 = let_ante(cl0) # q
 
-    if cl1 := claim_cons(cl0): # p
-        pf1 = dderiv(cl1, pr[0])
+        if cl1 := claim_cons(cl0): # p
+            pf1 = dderiv(cl1, pr[0])

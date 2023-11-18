@@ -13,7 +13,9 @@ pr = [
     p >> q,
 ]
 conc = q
+modp = theorem(pr, conc)
 
-if cl0 := conc:
-    st1 = modp(pr[0], pr[1])
-    pf0 = dderiv(st1, cl0)
+if __name__ == '__main__':
+    if cl0 := conc:
+        st1 = modp(pr[0], pr[1])
+        pf0 = dderiv(st1, cl0)
