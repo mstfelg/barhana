@@ -13,4 +13,4 @@ pr = [
     p
 ]
 conc = p
-thm = theorem(pr, conc)
+rep = theorem(pr, conc)

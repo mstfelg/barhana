@@ -11,4 +11,4 @@ pr = [
     (p >> q) >> p
 ]
 conc = p
-thm = theorem(pr, conc)
+peirce = theorem(pr, conc)

@@ -12,4 +12,4 @@ pr = [
     p >> q
 ]
 conc = ~p ^ q
-thm = theorem(pr, conc)
+mc_equiv = theorem(pr, conc)

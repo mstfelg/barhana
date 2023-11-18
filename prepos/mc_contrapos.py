@@ -12,16 +12,17 @@ pr = [
     p >> q
 ]
 conc = ~q >> ~p
-thm = theorem(pr, conc)
+contrapos = theorem(pr, conc)
 
-if cl0 := conc: # ~q >> ~p
-    if1 = let_ante(cl0) # ~q
+if __name__ == '__main__':
+    if cl0 := conc: # ~q >> ~p
+        if1 = let_ante(cl0) # ~q
 
-    if cl1 := claim_cons(cl0): # ~p
-        if2 = let_not(cl1) # ~~p
+        if cl1 := claim_cons(cl0): # ~p
+            if2 = let_not(cl1) # ~~p
 
-        st1 = dneg(if2) # p
-        st2 = modp(st1, pr[0]) # q
-        pf1 = ideriv(if2, st2, if1)
+            st1 = dneg(if2) # p
+            st2 = modp(st1, pr[0]) # q
+            pf1 = ideriv(if2, st2, if1)
 
-    pf0 = dderiv(if1, cl1)
+        pf0 = dderiv(if1, cl1)

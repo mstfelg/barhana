@@ -10,4 +10,4 @@ p,q = symbols('p q')
 pr = [
 ]
 conc = (p >> q) ^ (p >> ~q)
-theorem = theorem(pr, conc)
+excluded_mid = theorem(pr, conc)
