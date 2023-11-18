@@ -4,8 +4,8 @@ title: Reduction of antecedents
 
 from sympy import symbols
 
-from barhana.rules import (cderiv, claim_cons, dderiv, ideriv, let_ante,
-                           let_not, modp, modt)
+from barhana.rules import (claim_cons, dderiv, ideriv, let_ante, let_not, modp,
+                           modt)
 
 p,q,r = symbols('p q')
 pr = [

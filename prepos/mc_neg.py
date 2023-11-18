@@ -18,7 +18,7 @@ if cl0 := conc:
     if cl1 := unconj(cl0)[0]: # p
         if1 = let_not(cl1) # ~p
         st1 = vacuous(if1, q) # p >> q
-        pf1 = ideriv(pr[0], st1)
+        pf1 = ideriv(if1, st1, pr[0])
 
     if cl2 := unconj(cl0)[1]: # ~q
         if2 = dneg(let_not(cl2)) # q

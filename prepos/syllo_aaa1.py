@@ -1,6 +1,6 @@
 from sympy import symbols
 
-from barhana.rules import (cderiv, claim_cons, dderiv, ideriv, let_ante,
+from barhana.rules import (dderiv, claim_cons, dderiv, ideriv, let_ante,
                            let_not, modp, modt, theorem)
 
 p,q,r = symbols('p q r')
@@ -20,5 +20,5 @@ if cl0 := conc:
             if3 = let_not(r)
             st1 = modt(cl1, if3) # ~p
             pf2 = ideriv(if2, st1) # r
-        pf1 = cderiv(if2, pf2) # p >> r
+        pf1 = dderiv(if2, pf2) # p >> r
     pf0 = dderiv(cl1, pf1) # (q >> r) >> (p >> r)
