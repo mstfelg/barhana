@@ -70,16 +70,13 @@ def claim(statement):
 
     return statement
 
-def dderiv(claim_st, stat):
+def dderiv(ante, cons):
     """
         Direct Derivation
-        Given a claim, statement is reached. Proof is concluded.
+        Assuming P, consequent Q is true. Therefore P >> Q.
     """
 
-    if claim_st != stat:
-        return false
-
-    return stat
+    return ante >> cons
 
 def let_ante(cond):
     """
@@ -112,16 +109,31 @@ def claim_not(statement):
 
     return ~statement
 
-def ideriv(lhs, rhs):
+def ideriv(ante, *imp):
     """
         Indirect Derivation (Proof by contradiction)
-        Assume not P. Show P. Therefore P.
+        Assuming P, statements ~Q and Q hold. Therefore ~P.
+
+        Alternatively,
+        Assuming P, statement ~P hold. Therefore ~P.
     """
 
-    if lhs and rhs:
+    if len(imp) == 1:
+        not_ante = imp[0]
+
+        if ante != ~not_ante & ~ante != not_ante:
+            return false
+
+        return ~ante
+
+    cons = imp[0]
+    not_cons = imp[1]
+
+    if cons != ~not_cons & ~cons != not_cons:
         return false
 
-    return rhs
+    return ~ante
+
 
 def let_not(statement):
     """
@@ -129,14 +141,6 @@ def let_not(statement):
     """
 
     return ~statement
-
-def cderiv(lhs, rhs):
-    """
-        Conditional Derivation
-        Assume LHS. Show RHS. Therefore LHS implies RHS.
-    """
-
-    return lhs >> rhs
 
 def unconj(expr):
     """

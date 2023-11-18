@@ -1,7 +1,7 @@
 from sympy import symbols
 
-from barhana.rules import (cderiv, claim_cons, dderiv, ideriv, let_ante,
-                           let_not, modp, modt, theorem)
+from barhana.rules import (claim_cons, dderiv, ideriv, let_ante, let_not, modp,
+                           modt, theorem)
 
 p,q,r = symbols('p q r')
 pr = [
@@ -20,7 +20,7 @@ if cl0 := conc:
             st1 = modp(pr[0], if2) # q >> r
             if3 = let_not(cl2) # ~r
             st2 = modt(st1, if3) # ~q
-            pf2 = ideriv(st2, if1) # r
+            pf2 = ideriv(if3, st2, if1) # r
 
-        pf1 = cderiv(if2, cl2) # p >> r
+        pf1 = dderiv(if2, cl2) # p >> r
     pf0 = dderiv(if1, cl1) # q >> (p >> r)

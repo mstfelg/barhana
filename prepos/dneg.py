@@ -11,8 +11,5 @@ p = symbols('p')
 pr = [
     p
 ]
-
-if cl0 := iff(p, ~~p):
-    True
-
-thm = theorem(pr, cl0)
+conc = iff(p, ~~p)
+thm = theorem(pr, conc)

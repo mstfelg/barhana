@@ -5,7 +5,7 @@ other_names: Hypothetical syllogism, Chain Rule
 
 from sympy import symbols
 
-from barhana.rules import cderiv, ideriv, let_ante, modp, modt
+from barhana.rules import dderiv, ideriv, let_ante, modp, modt
 
 p,q,r = symbols('p q r')
 pr = [
@@ -18,7 +18,7 @@ if cl0 := conc:
     if1 = let_ante(cl0) # p
     st1 = modp(if1, pr[0]) # q
     st2 = modp(st1, pr[1]) # r
-    pf0 = cderiv(p, st2) # p >> r
+    pf0 = dderiv(p, st2) # p >> r
 
 if cl0 := conc:
     cl1 = r
