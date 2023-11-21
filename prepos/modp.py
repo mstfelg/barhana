@@ -5,7 +5,7 @@ other_names: Law of detachment
 
 from sympy import symbols
 
-from barhana.rules import dderiv, modp
+from barhana.rules import dderiv, theorem
 
 p,q = symbols('p q')
 pr = [
@@ -14,8 +14,3 @@ pr = [
 ]
 conc = q
 modp = theorem(pr, conc)
-
-if __name__ == '__main__':
-    if cl0 := conc:
-        st1 = modp(pr[0], pr[1])
-        pf0 = dderiv(st1, cl0)
