@@ -5,7 +5,7 @@ desc: ~P. Therefore ~(P & Q).
 
 from sympy import symbols
 
-from barhana.rules import dderiv, iff, modt, theorem
+from barhana.rules import theorem
 
 p,q = symbols('p q')
 pr = [
