@@ -11,5 +11,5 @@ p,q = symbols('p q')
 pr = [
     p >> q
 ]
-conc = ~p ^ q
+conc = ~p | q
 mc_equiv = theorem(pr, conc)
