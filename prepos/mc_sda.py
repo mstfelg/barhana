@@ -6,6 +6,6 @@ from sympy import symbols
 
 p,q,r = symbols('p q r')
 pr = [
-        (p ^ q) >> q
+        (p | q) >> q
 ]
-conc = (p >> r) ^ (q >> r)
+conc = (p >> r) | (q >> r)

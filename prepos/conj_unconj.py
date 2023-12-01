@@ -13,7 +13,7 @@ pr = [
     p & q,
 ]
 conc = p
-modt = theorem(pr, conc)
+unconj = theorem(pr, conc)
 
 if __name__ == '__main__':
     if cl0 := conc: # p
