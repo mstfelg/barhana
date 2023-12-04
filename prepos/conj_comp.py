@@ -1,6 +1,6 @@
 '''
-title: Conjunction law of negation
-other_names: Law of noncontradiction
+title: Conjunction law of compliment
+other_names: Law of noncontradiction, Conjunction law of negation
 desc: P and ~P is false.
 '''
 
