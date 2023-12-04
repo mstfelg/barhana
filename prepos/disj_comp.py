@@ -1,6 +1,6 @@
 '''
-title: Disjunction law of negation
-other_names: Law of excluded middle
+title: Disjunction law of compliment
+other_names: Law of excluded middle, Disjunction law of negation
 desc: P or ~P
 '''
 
