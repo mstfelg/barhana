@@ -1,5 +1,6 @@
 '''
-title: Vacuous conjunction
+title: Conjunction law of annulment
+other_names: Vacuous conjunction
 desc: ~P. Therefore ~(P & Q).
 '''
 
@@ -12,4 +13,4 @@ pr = [
     ~p
 ]
 conc = ~(p & q)
-conj_vacuous = theorem(pr, conc)
+conj_annul = theorem(pr, conc)
