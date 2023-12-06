@@ -1,5 +1,6 @@
 '''
-title: Vacuous implication
+title: Material condition law of annulment
+other_names: Vacuous implication
 desc: Assume P. Therefore, ~P implies anything.
 '''
 
