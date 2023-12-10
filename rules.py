@@ -189,7 +189,7 @@ def de_morgan(expr):
     if not isinstance(expr, Not):
         return false
 
-    return (~ expr.args[0])^(~expr.args[1])
+    return (~ expr.args[0]) | (~expr.args[1])
 
 def vacuous(premise, expr):
     """

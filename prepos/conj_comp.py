@@ -1,5 +1,5 @@
 '''
-title: Conjunction law of compliment
+title: Conjunction law of complement
 other_names: Law of noncontradiction, Conjunction law of negation
 desc: P and ~P is false.
 '''
