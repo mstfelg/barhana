@@ -1,5 +1,5 @@
 '''
-title: Disjunction law of compliment
+title: Disjunction law of complement
 other_names: Law of excluded middle, Disjunction law of negation
 desc: P or ~P
 '''
