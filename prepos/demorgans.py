@@ -15,6 +15,7 @@ pr = [
 ]
 conc = iff(p | q, ~(~p & ~q))
 conj_neg = theorem(pr, conc)
+demorgans = theorem(pr, conc)
 
 if cl0 := conc:
     if1 = let_ante(cl0) # p | q
