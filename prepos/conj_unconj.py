@@ -1,5 +1,6 @@
 '''
 title: Unconjunction
+other_names: Simplification
 desc: P and Q. Therefore P.
 '''
 
