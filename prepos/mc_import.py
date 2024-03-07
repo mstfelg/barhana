@@ -1,5 +1,6 @@
 '''
-title: Material Condition Import/Export
+title: Material Condition Import
+other_names: Importation
 '''
 
 from sympy import symbols
