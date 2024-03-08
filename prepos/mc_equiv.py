@@ -1,6 +1,5 @@
 '''
-title: Or-and-if material condition
-other_names: Conditional Equivalence
+title: Material equivalence
 '''
 
 from sympy import symbols
@@ -9,7 +8,6 @@ from barhana.rules import *
 
 p,q = symbols('p q')
 pr = [
-    p >> q
 ]
-conc = ~p | q
+conc = iff(iff(p, q), (p & q) | (~p & ~q))
 mc_equiv = theorem(pr, conc)
