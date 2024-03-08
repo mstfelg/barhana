@@ -1,6 +1,6 @@
 '''
 title: Transivity of implication
-other_names: Hypothetical syllogism, Chain Rule
+other_names: (Pure) Hypothetical syllogism, Chain Rule
 '''
 
 from sympy import symbols

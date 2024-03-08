@@ -1,6 +1,6 @@
 '''
 title: Modus Pollens
-other_names: Law of detachment
+other_names: Law of detachment, Denying mode
 '''
 
 from sympy import symbols
