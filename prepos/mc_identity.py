@@ -1,6 +1,6 @@
 '''
 title: Law of identity
-other_names: Repeat rule
+other_names: Repeat rule, Tautology
 desc: P. Therefore P.
 '''
 

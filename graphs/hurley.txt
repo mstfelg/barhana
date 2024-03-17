@@ -22,3 +22,4 @@ mc_impl
 mc_equiv
 mc_export
 mc_import
+mc_identity
